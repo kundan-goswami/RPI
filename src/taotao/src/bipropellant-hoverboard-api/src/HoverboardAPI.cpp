@@ -21,13 +21,14 @@
  *    HoverboardAPI hoverboard = HoverboardAPI(serialWrapper);
  *
  ***************************************************************************/
+#include <wiringPi.h>
 
 extern "C" {
   //extern void delay(uint32_t ms);
   //extern unsigned long millis(void);
 }
 
-//uint32_t tickWrapper(void) { return (uint32_t) millis(); }
+uint32_t tickWrapper(void) { return (uint32_t) millis(); }
 
 
 
@@ -40,8 +41,8 @@ HoverboardAPI::HoverboardAPI(int (*send_serial_data)( unsigned char *data, int l
   s.allow_ascii = 0;       // do not allow ASCII parsing.
 //  s.timeout1 = 50; //timeout for ACK
 //  s.timeout2 = 10; // timeout between characters
-  //protocol_GetTick = tickWrapper;
-  //protocol_Delay = delay;
+  protocol_GetTick = tickWrapper;
+  protocol_Delay = delay;
   setParamHandler(Codes::sensHall, NULL); // Disable callbacks for Hall
 }
 

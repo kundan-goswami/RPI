@@ -97,12 +97,16 @@ void rx_node(int* publish_rate) {
     	std_msgs::Empty msg;
     	pub_b.publish(msg);
     	count = read(sfd,&c,1);
-
+    	  // Print Speed on debug Serial.
+    	  printf("Motor Speed: %d km/h (average wheel1 and wheel2",hoverboard.getSpeed_kmh());
+    	  // Print battery Voltage on debug Serial.
+    	  printf("Battery Voltage: %d V", hoverboard.getBatteryVoltage());
+    	  fflush(stdout);
     	if (count!=0) {
     		//rx_buf[i++] = c;
     		hoverboard.protocolPush(c);
-    		printf("%x",c);
-    		fflush(stdout);
+    		//printf("%x",c);
+    		//fflush(stdout);
     		/*
 			if (c == 0) {
 				printf("%s",rx_buf);
