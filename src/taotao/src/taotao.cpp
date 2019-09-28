@@ -125,7 +125,7 @@ int main(int argc , char ** argv) {
     if (sfd == -1)
         return 1;
 
-    int rx_rate = 1; // 1 Hz
+    int rx_rate = 10; // 1 Hz
     // init ros node
     ros::init(argc, argv, "taotao");
 
@@ -158,7 +158,7 @@ int main(int argc , char ** argv) {
 
     // transmitter
     ros::Publisher pwm_data = node->advertise<std_msgs::Empty>("pwm", 10);
-    ros::Rate loop_rate(10); // 100 Hz
+    ros::Rate loop_rate(1); // 100 Hz
     while (ros::ok()) {
         std_msgs::Empty msg;
 

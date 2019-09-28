@@ -17,7 +17,9 @@ protocolFunctions.h
 /home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/protocolFunctions.h
 stdio.h
 -
-wiringPi.h
+sys/time.h
+-
+unistd.h
 -
 
 /home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/HoverboardAPI.h

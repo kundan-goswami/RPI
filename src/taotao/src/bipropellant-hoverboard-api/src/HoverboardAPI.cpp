@@ -21,17 +21,27 @@
  *    HoverboardAPI hoverboard = HoverboardAPI(serialWrapper);
  *
  ***************************************************************************/
-#include <wiringPi.h>
+//#include <wiringPi.h>
+#include <sys/time.h>
+#include <unistd.h> // sleep
 
 extern "C" {
   //extern void delay(uint32_t ms);
   //extern unsigned long millis(void);
 }
 
-uint32_t tickWrapper(void) { return (uint32_t) millis(); }
+void delay(uint32_t ms) {
+	sleep(ms/1000);
+}
 
 
-
+long getMicrotime(){
+	struct timeval currentTime;
+	gettimeofday(&currentTime, NULL);
+	return currentTime.tv_sec * (int)1e6 + currentTime.tv_usec;
+}
+uint32_t tickWrapper(void) { return (uint32_t) getMicrotime(); }
+//uint32_t tickWrapper(void) { return (uint32_t) millis(); }
 
 HoverboardAPI::HoverboardAPI(int (*send_serial_data)( unsigned char *data, int len )) {
   if(protocol_init(&s) != 0) while(1) {};
