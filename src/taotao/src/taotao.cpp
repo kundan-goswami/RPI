@@ -19,7 +19,11 @@
 
 #include "bipropellant-hoverboard-api/src/HoverboardAPI.h"
 
+#include "taotao/Mdu.h"
+#include "motion_controller/Pwm.h"
 
+
+//#define R_PI
 using namespace std;
 int sfd;
 
@@ -81,96 +85,147 @@ void tx_node(int sfd){
     //printf("transmitter Thread started\n");
     int count = write(sfd, data, strlen(data)+1);
 }
+void write_data_hoverboard(const motion_controller::Pwm::ConstPtr&  msg)
+{
+  printf("I heard: [%f]", msg->pwm_l);
+}
 
 void rx_node(int* publish_rate) {
-    char rx_buf[20];
     char c;
     int count = 0;
-    int i = 0;
 
 
     ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
-    ros::Publisher pub_b = node->advertise<std_msgs::Empty>("pwm", 10);
 
+    //ros::Subscriber pwm_data = node->subscribe("pwm",100,write_data_hoverboard) ;
+    //ros::Publisher mdu_pub = n.advertise<taotao::Mdu>("mdu", 100);
     ros::Rate loop_rate(*publish_rate);
+    printf("receiver Thread started\n");
+    fflush(stdout);
     while (ros::ok()) {
-    	std_msgs::Empty msg;
-    	pub_b.publish(msg);
-    	count = read(sfd,&c,1);
-    	  // Print Speed on debug Serial.
-    	  printf("Motor Speed: %f km/h (average wheel1 and wheel2\n",hoverboard.getSpeed_kmh());
-    	  // Print battery Voltage on debug Serial.
-    	  printf("Battery Voltage: %f V\n", hoverboard.getBatteryVoltage());
-    	  fflush(stdout);
+		// Print Speed on debug Serial.
+		printf("Motor Speed: %lf km/h (average wheel1 and wheel2)\n",hoverboard.getSpeed_kmh());
+		// Print battery Voltage on debug Serial.
+		printf("Battery Voltage: %lf V\n", hoverboard.getBatteryVoltage());
+		fflush(stdout);
+#if defined(R_PI)
+		count = read(sfd,&c,1);
     	if (count!=0) {
-    		//rx_buf[i++] = c;
     		hoverboard.protocolPush(c);
-    		//printf("%x",c);
-    		//fflush(stdout);
-    		/*
-			if (c == 0) {
-				printf("%s",rx_buf);
-				memset(rx_buf, 0, sizeof(rx_buf));
-				i = 0;
-				fflush(stdout);
-		}*/
+    	}
+#endif
+        loop_rate.sleep();
+        ros::spinOnce();
 	}
-    loop_rate.sleep();
-  }
+
 }
 
+
 int main(int argc , char ** argv) {
+#if defined(R_PI)
 	// initializer serial0
     sfd = init_serial();
     if (sfd == -1)
         return 1;
 
-    int rx_rate = 10; // 1 Hz
-    // init ros node
-    ros::init(argc, argv, "taotao");
-
+    int count = 0;
+    char c;
     // Request Hall sensor data every 100ms
-    hoverboard.scheduleRead(HoverboardAPI::Codes::sensHall, -1, 100);
+	hoverboard.scheduleRead(HoverboardAPI::Codes::sensHall, -1, 100);
 
-    // Request Electrical Information every second
-    hoverboard.scheduleRead(hoverboard.Codes::sensElectrical, -1, 1000);
+	// Request Electrical Information every second
+	hoverboard.scheduleRead(hoverboard.Codes::sensElectrical, -1, 1000);
 
-    // Register Variable and send PWM values periodically
-    hoverboard.updateParamVariable(HoverboardAPI::Codes::setPointPWM, &PWMData, sizeof(PWMData));
-    hoverboard.scheduleTransmission(HoverboardAPI::Codes::setPointPWM, -1, 30);
+	// Register Variable and send PWM values periodically
+	hoverboard.updateParamVariable(HoverboardAPI::Codes::setPointPWM, &PWMData, sizeof(PWMData));
+	hoverboard.scheduleTransmission(HoverboardAPI::Codes::setPointPWM, -1, 30);
 
-    // Send PWM to 10% duty cycle for wheel1, 15% duty cycle for wheel2. Wheel2 is running backwards.
-    PWMData.pwm[0] = 100.0;
-    PWMData.pwm[1] = -150.0;
+	// Send PWM to 10% duty cycle for wheel1, 15% duty cycle for wheel2. Wheel2 is running backwards.
+	PWMData.pwm[0] = 100.0;
+	PWMData.pwm[1] = -150.0;
 
-    // Register Variable and send Buzzer values periodically
-    hoverboard.updateParamVariable(HoverboardAPI::Codes::setBuzzer, &buzzer, sizeof(buzzer));
-    hoverboard.scheduleTransmission(HoverboardAPI::Codes::setBuzzer, -1, 200);
+	// Register Variable and send Buzzer values periodically
+	hoverboard.updateParamVariable(HoverboardAPI::Codes::setBuzzer, &buzzer, sizeof(buzzer));
+	hoverboard.scheduleTransmission(HoverboardAPI::Codes::setBuzzer, -1, 200);
 
-    // Set maxium PWM to 400, Minimum to -400 and threshold to 30. Require ACK (Message will be resend when not Acknowledged)
-    hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+	// Set maxium PWM to 400, Minimum to -400 and threshold to 30. Require ACK (Message will be resend when not Acknowledged)
+	hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+#endif
+	taotao::Mdu msg;
+	// init ros node
+	ros::init(argc, argv, "taotao");
 
+	ros::NodeHandle n;
+
+	ros::Subscriber pwm_data_sub = n.subscribe("pwm",100,write_data_hoverboard) ;
+	ros::Publisher  mdu_pub      = n.advertise<taotao::Mdu>("mdu", 100);
+    //ros::Publisher gyroscope_pub    = n.advertise<std_msgs::String>("gyroscope", 100);
+    //ros::Publisher acclerometer_pub = n.advertise<std_msgs::String>("acclerometer", 1000);
+    //ros::Publisher hall_sensor_pub  = n.advertise<std_msgs::String>("hall_sensor", 1000);
+    //ros::Publisher electrical_pub   = n.advertise<std_msgs::String>("electrical", 1000);
 
     // spawn thread for receiving data
-    boost::thread rx_thread(rx_node, &rx_rate);
+    //boost::thread rx_thread(rx_node, &rx_rate);
 
-    ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
+    //ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
 
     // transmitter
-    ros::Publisher pwm_data = node->advertise<std_msgs::Empty>("pwm", 10);
-    ros::Rate loop_rate(1); // 100 Hz
-    while (ros::ok()) {
-        std_msgs::Empty msg;
+    //ros::Publisher gyrosp = node->advertise<std_msgs::Empty>("gyroscope", 10);
+    //pwm_data.publish(msg);
+    // hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+    ros::Rate loop_rate(1); // 1 Hz
+    msg.battery_state.voltage = 10;
+    msg.battery_state.current = 1;
+	msg.battery_state.charge = 23;
+	msg.battery_state.capacity = 45;
+	msg.battery_state.design_capacity = 50;
+	msg.battery_state.percentage = 20;
+	msg.battery_state.power_supply_status = 10;
+	msg.battery_state.power_supply_health = 30;
+	msg.battery_state.power_supply_technology = 50;
+	msg.battery_state.present = 1;
 
-        pwm_data.publish(msg);
-        hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+	msg.motor_l.current_ph_a = 30;
+	msg.motor_l.current_ph_b = 40;
+	msg.motor_l.current_ph_c = 12;
+	msg.motor_l.voltage = 34;
+	msg.motor_l.hall_sensor = 45;
+	msg.motor_l.speed = 12;
+	msg.motor_l.torque = 45;
+
+	msg.motor_r.current_ph_a = 30;
+	msg.motor_r.current_ph_b = 40;
+	msg.motor_r.current_ph_c = 12;
+	msg.motor_r.voltage = 34;
+	msg.motor_r.hall_sensor = 45;
+	msg.motor_r.speed = 12;
+	msg.motor_r.torque = 45;
+
+	msg.board.power_on_status = 1;
+	msg.board.temprature = 45;
+
+    while (ros::ok()) {
+#if defined(PI)
+		count = read(sfd,&c,1);
+		if (count!=0) {
+			hoverboard.protocolPush(c);
+		}
+
         hoverboard.protocolTick();
-        loop_rate.sleep();
-        // process any incoming messages in this thread
-        ros::spinOnce();
+
+        // Print Speed on debug Serial.
+		printf("Motor Speed: %lf km/h (average wheel1 and wheel2)\n",hoverboard.getSpeed_kmh());
+		// Print battery Voltage on debug Serial.
+		printf("Battery Voltage: %lf V\n", hoverboard.getBatteryVoltage());
+		fflush(stdout);
+#endif
+		mdu_pub.publish(msg);
+		ros::spinOnce();
+
+		loop_rate.sleep();
     }
     // wait the second thread to finish
-    rx_thread.join();
+    //rx_thread.join();
 
     //thread rx(rx_node, sfd);
     //thread tx(tx_node, sfd);

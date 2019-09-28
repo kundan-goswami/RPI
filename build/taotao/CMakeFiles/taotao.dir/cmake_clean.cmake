@@ -5,8 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o"
   "CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o"
   "CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o"
-  "/home/kgoswam/RPI/devel/lib/taotao/taotao.pdb"
-  "/home/kgoswam/RPI/devel/lib/taotao/taotao"
+  "/home/kgoswam/catkin_ws/devel/lib/taotao/taotao.pdb"
+  "/home/kgoswam/catkin_ws/devel/lib/taotao/taotao"
 )
 
 # Per-language clean rules from dependency scanning.

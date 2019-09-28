@@ -7,11 +7,11 @@ C_FLAGS =
 
 C_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"taotao\"
 
-C_INCLUDES = -I/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api -I/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+C_INCLUDES = -I/home/kgoswam/catkin_ws/devel/include -I/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api -I/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 
 CXX_FLAGS =  
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"taotao\"
 
-CXX_INCLUDES = -I/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api -I/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/home/kgoswam/catkin_ws/devel/include -I/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api -I/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol -I/opt/ros/melodic/include -I/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

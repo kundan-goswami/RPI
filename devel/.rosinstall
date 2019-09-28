@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/kgoswam/RPI/devel/setup.sh
+    local-name: /home/kgoswam/catkin_ws/devel/setup.sh

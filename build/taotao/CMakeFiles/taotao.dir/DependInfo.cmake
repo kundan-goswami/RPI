@@ -5,10 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o"
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o"
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o"
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/protocolFunctions.c" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/protocolFunctions.c.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/protocolFunctions.c" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/protocolFunctions.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -21,14 +21,15 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api"
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol"
+  "/home/kgoswam/catkin_ws/devel/include"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o"
-  "/home/kgoswam/RPI/src/taotao/src/taotao.cpp" "/home/kgoswam/RPI/build/taotao/CMakeFiles/taotao.dir/src/taotao.cpp.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o"
+  "/home/kgoswam/catkin_ws/src/taotao/src/taotao.cpp" "/home/kgoswam/catkin_ws/build/taotao/CMakeFiles/taotao.dir/src/taotao.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -41,8 +42,9 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api"
-  "/home/kgoswam/RPI/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol"
+  "/home/kgoswam/catkin_ws/devel/include"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api"
+  "/home/kgoswam/catkin_ws/src/taotao/src/bipropellant-hoverboard-api/src/hbprotocol"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

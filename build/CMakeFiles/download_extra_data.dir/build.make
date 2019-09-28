@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kgoswam/RPI/src
+CMAKE_SOURCE_DIR = /home/kgoswam/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kgoswam/RPI/build
+CMAKE_BINARY_DIR = /home/kgoswam/catkin_ws/build
 
 # Utility rule file for download_extra_data.
 
@@ -67,6 +67,6 @@ CMakeFiles/download_extra_data.dir/clean:
 .PHONY : CMakeFiles/download_extra_data.dir/clean
 
 CMakeFiles/download_extra_data.dir/depend:
-	cd /home/kgoswam/RPI/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kgoswam/RPI/src /home/kgoswam/RPI/src /home/kgoswam/RPI/build /home/kgoswam/RPI/build /home/kgoswam/RPI/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kgoswam/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kgoswam/catkin_ws/src /home/kgoswam/catkin_ws/src /home/kgoswam/catkin_ws/build /home/kgoswam/catkin_ws/build /home/kgoswam/catkin_ws/build/CMakeFiles/download_extra_data.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/download_extra_data.dir/depend
 

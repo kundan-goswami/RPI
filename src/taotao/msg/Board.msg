@@ -1,0 +1,2 @@
+bool power_on_status
+float32 temprature
