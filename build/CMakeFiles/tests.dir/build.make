@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ros_master/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/kgoswam/RPI/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ros_master/catkin_ws/build
+CMAKE_BINARY_DIR = /home/kgoswam/RPI/build
 
 # Utility rule file for tests.
 
@@ -67,6 +67,6 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 CMakeFiles/tests.dir/depend:
-	cd /home/ros_master/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ros_master/catkin_ws/src /home/ros_master/catkin_ws/src /home/ros_master/catkin_ws/build /home/ros_master/catkin_ws/build /home/ros_master/catkin_ws/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kgoswam/RPI/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kgoswam/RPI/src /home/kgoswam/RPI/src /home/kgoswam/RPI/build /home/kgoswam/RPI/build /home/kgoswam/RPI/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tests.dir/depend
 

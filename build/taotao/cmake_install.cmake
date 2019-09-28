@@ -1,8 +1,8 @@
-# Install script for directory: /home/ros_master/catkin_ws/src/taotao
+# Install script for directory: /home/kgoswam/RPI/src/taotao
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ros_master/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/kgoswam/RPI/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ros_master/catkin_ws/build/taotao/catkin_generated/installspace/taotao.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/kgoswam/RPI/build/taotao/catkin_generated/installspace/taotao.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/taotao/cmake" TYPE FILE FILES
-    "/home/ros_master/catkin_ws/build/taotao/catkin_generated/installspace/taotaoConfig.cmake"
-    "/home/ros_master/catkin_ws/build/taotao/catkin_generated/installspace/taotaoConfig-version.cmake"
+    "/home/kgoswam/RPI/build/taotao/catkin_generated/installspace/taotaoConfig.cmake"
+    "/home/kgoswam/RPI/build/taotao/catkin_generated/installspace/taotaoConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/taotao" TYPE FILE FILES "/home/ros_master/catkin_ws/src/taotao/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/taotao" TYPE FILE FILES "/home/kgoswam/RPI/src/taotao/package.xml")
 endif()
 

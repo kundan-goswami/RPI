@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/ros_master/catkin_ws/install/setup.sh
+    local-name: /home/kgoswam/RPI/install/setup.sh

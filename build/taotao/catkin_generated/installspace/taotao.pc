@@ -1,8 +1,8 @@
-prefix=/home/ros_master/catkin_ws/install
+prefix=/home/kgoswam/RPI/install
 
 Name: taotao
 Description: Description of taotao
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/ros_master/catkin_ws/install/lib 
+Libs: -L/home/kgoswam/RPI/install/lib 
 Requires: 

@@ -115,7 +115,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+ src/bipropellant-hoverboard-api
+ src/bipropellant-hoverboard-api/src/hbprotocol
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -203,5 +204,12 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(taotao src/taotao.cpp)
+add_executable(taotao src/taotao.cpp
+src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp 
+src/bipropellant-hoverboard-api/src/protocolFunctions.c 
+src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp 
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c)
+#add_library(hoverborad)
 target_link_libraries(taotao ${catkin_LIBRARIES})

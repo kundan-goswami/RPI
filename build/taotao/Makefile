@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ros_master/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/kgoswam/RPI/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ros_master/catkin_ws/build
+CMAKE_BINARY_DIR = /home/kgoswam/RPI/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,16 +80,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -101,17 +91,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -122,6 +101,27 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -137,14 +137,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ros_master/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ros_master/catkin_ws/build/CMakeFiles /home/ros_master/catkin_ws/build/taotao/CMakeFiles/progress.marks
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ros_master/catkin_ws/build/CMakeFiles 0
+	cd /home/kgoswam/RPI/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/kgoswam/RPI/build/CMakeFiles /home/kgoswam/RPI/build/taotao/CMakeFiles/progress.marks
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kgoswam/RPI/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/clean
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,52 +154,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/preinstall
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/preinstall
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ros_master/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/kgoswam/RPI/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
 taotao/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_py.dir/rule
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_py.dir/rule
 .PHONY : taotao/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -209,42 +179,12 @@ roscpp_generate_messages_py: taotao/CMakeFiles/roscpp_generate_messages_py.dir/r
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_py.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_py.dir/build
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_py.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
-taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
 taotao/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 .PHONY : taotao/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -254,27 +194,42 @@ roscpp_generate_messages_eus: taotao/CMakeFiles/roscpp_generate_messages_eus.dir
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_eus.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_eus.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
-taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_nodejs: taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+roscpp_generate_messages_lisp: taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 
-.PHONY : roscpp_generate_messages_nodejs
+.PHONY : roscpp_generate_messages_lisp
 
 # fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
+roscpp_generate_messages_lisp/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 .PHONY : taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
@@ -284,102 +239,27 @@ std_msgs_generate_messages_lisp: taotao/CMakeFiles/std_msgs_generate_messages_li
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_cpp: taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+roscpp_generate_messages_cpp: taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
-.PHONY : std_msgs_generate_messages_cpp
+.PHONY : roscpp_generate_messages_cpp
 
 # fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_py.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
+roscpp_generate_messages_cpp/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
 taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 .PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -389,12 +269,132 @@ rosgraph_msgs_generate_messages_eus: taotao/CMakeFiles/rosgraph_msgs_generate_me
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
+taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make taotao/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make taotao/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: taotao/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_py.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make taotao/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
 taotao/CMakeFiles/taotao.dir/rule:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/taotao.dir/rule
+	cd /home/kgoswam/RPI/build && $(MAKE) -f CMakeFiles/Makefile2 taotao/CMakeFiles/taotao.dir/rule
 .PHONY : taotao/CMakeFiles/taotao.dir/rule
 
 # Convenience name for target.
@@ -404,8 +404,143 @@ taotao: taotao/CMakeFiles/taotao.dir/rule
 
 # fast build rule for target.
 taotao/fast:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/build
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/build
 .PHONY : taotao/fast
+
+src/bipropellant-hoverboard-api/src/HoverboardAPI.o: src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o
+
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.o
+
+# target to build an object file
+src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.o
+
+src/bipropellant-hoverboard-api/src/HoverboardAPI.i: src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.i
+
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.i
+
+# target to preprocess a source file
+src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.i:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.i
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.i
+
+src/bipropellant-hoverboard-api/src/HoverboardAPI.s: src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.s
+
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.s
+
+# target to generate assembly for a file
+src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.s:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.s
+.PHONY : src/bipropellant-hoverboard-api/src/HoverboardAPI.cpp.s
+
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.o: src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.o
+
+# target to build an object file
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.o
+
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.i: src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.i
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.i
+
+# target to preprocess a source file
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.i:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.i
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.i
+
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.s: src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.s
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.s
+
+# target to generate assembly for a file
+src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.s:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.s
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.c.s
+
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.o: src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.o
+
+# target to build an object file
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.o
+
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.i: src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.i
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.i
+
+# target to preprocess a source file
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.i:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.i
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.i
+
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.s: src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.s
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.s
+
+# target to generate assembly for a file
+src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.s:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.s
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.c.s
+
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.o: src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.o
+
+# target to build an object file
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.o
+
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.i: src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.i
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.i
+
+# target to preprocess a source file
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.i:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.i
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.i
+
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.s: src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.s
+
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.s
+
+# target to generate assembly for a file
+src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.s:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.s
+.PHONY : src/bipropellant-hoverboard-api/src/hbprotocol/protocol.c.s
+
+src/bipropellant-hoverboard-api/src/protocolFunctions.o: src/bipropellant-hoverboard-api/src/protocolFunctions.c.o
+
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.o
+
+# target to build an object file
+src/bipropellant-hoverboard-api/src/protocolFunctions.c.o:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/protocolFunctions.c.o
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.c.o
+
+src/bipropellant-hoverboard-api/src/protocolFunctions.i: src/bipropellant-hoverboard-api/src/protocolFunctions.c.i
+
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.i
+
+# target to preprocess a source file
+src/bipropellant-hoverboard-api/src/protocolFunctions.c.i:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/protocolFunctions.c.i
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.c.i
+
+src/bipropellant-hoverboard-api/src/protocolFunctions.s: src/bipropellant-hoverboard-api/src/protocolFunctions.c.s
+
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.s
+
+# target to generate assembly for a file
+src/bipropellant-hoverboard-api/src/protocolFunctions.c.s:
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/bipropellant-hoverboard-api/src/protocolFunctions.c.s
+.PHONY : src/bipropellant-hoverboard-api/src/protocolFunctions.c.s
 
 src/taotao.o: src/taotao.cpp.o
 
@@ -413,7 +548,7 @@ src/taotao.o: src/taotao.cpp.o
 
 # target to build an object file
 src/taotao.cpp.o:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.o
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.o
 .PHONY : src/taotao.cpp.o
 
 src/taotao.i: src/taotao.cpp.i
@@ -422,7 +557,7 @@ src/taotao.i: src/taotao.cpp.i
 
 # target to preprocess a source file
 src/taotao.cpp.i:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.i
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.i
 .PHONY : src/taotao.cpp.i
 
 src/taotao.s: src/taotao.cpp.s
@@ -431,7 +566,7 @@ src/taotao.s: src/taotao.cpp.s
 
 # target to generate assembly for a file
 src/taotao.cpp.s:
-	cd /home/ros_master/catkin_ws/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.s
+	cd /home/kgoswam/RPI/build && $(MAKE) -f taotao/CMakeFiles/taotao.dir/build.make taotao/CMakeFiles/taotao.dir/src/taotao.cpp.s
 .PHONY : src/taotao.cpp.s
 
 # Help Target
@@ -442,27 +577,42 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... list_install_components"
 	@echo "... roscpp_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... edit_cache"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... roscpp_generate_messages_cpp"
 	@echo "... install"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... taotao"
+	@echo "... src/bipropellant-hoverboard-api/src/HoverboardAPI.o"
+	@echo "... src/bipropellant-hoverboard-api/src/HoverboardAPI.i"
+	@echo "... src/bipropellant-hoverboard-api/src/HoverboardAPI.s"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.o"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.i"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/ascii_protocol.s"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.o"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.i"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/machine_protocol.s"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/protocol.o"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/protocol.i"
+	@echo "... src/bipropellant-hoverboard-api/src/hbprotocol/protocol.s"
+	@echo "... src/bipropellant-hoverboard-api/src/protocolFunctions.o"
+	@echo "... src/bipropellant-hoverboard-api/src/protocolFunctions.i"
+	@echo "... src/bipropellant-hoverboard-api/src/protocolFunctions.s"
 	@echo "... src/taotao.o"
 	@echo "... src/taotao.i"
 	@echo "... src/taotao.s"
@@ -477,6 +627,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ros_master/catkin_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/kgoswam/RPI/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

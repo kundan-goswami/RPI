@@ -17,13 +17,23 @@
 
 #include <sstream>
 
+#include "bipropellant-hoverboard-api/src/HoverboardAPI.h"
+
 
 using namespace std;
+int sfd;
 
-int init_serial();
+int serialWrapper(unsigned char *data, int len) {
+ return write(sfd,data,len);
+}
+
+HoverboardAPI hoverboard = HoverboardAPI(serialWrapper);
+// Variable for PWM
+PROTOCOL_PWM_DATA PWMData;
+PROTOCOL_BUZZER_DATA buzzer = {8, 0, 50};
 
 int init_serial() {
-    int sfd = open("/dev/serial0", O_RDWR | O_NOCTTY);
+    sfd = open("/dev/serial0", O_RDWR | O_NOCTTY);
      if (sfd == -1) {
         printf("Error no is : %d\n", errno);
         printf("Error description is : %s\n", strerror(errno));
@@ -43,8 +53,8 @@ int init_serial() {
 }
 
 
-// A dummy function
-void rx_node(int sfd)
+
+void serial_read(int sfd)
 {
     char rx_buf[20];
     char c;
@@ -72,43 +82,89 @@ void tx_node(int sfd){
     int count = write(sfd, data, strlen(data)+1);
 }
 
-void do_stuff(int* publish_rate)
-{
-  ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
-  ros::Publisher pub_b = node->advertise<std_msgs::Empty>("topic_b", 10);
+void rx_node(int* publish_rate,int sfd) {
+    char rx_buf[20];
+    char c;
+    int count = 0;
+    int i = 0;
 
-  ros::Rate loop_rate(*publish_rate);
-  while (ros::ok())
-  {
+
+    ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
+    ros::Publisher pub_b = node->advertise<std_msgs::Empty>("topic_b", 10);
+
+    ros::Rate loop_rate(*publish_rate);
+    while (ros::ok()) {
     std_msgs::Empty msg;
     pub_b.publish(msg);
+    count = read(sfd,&c,1);
+	if (count!=0) {
+		//rx_buf[i++] = c;
+		hoverboard.protocolPush(c);
+		printf("%c",c);
+		/*
+		if (c == 0) {
+			printf("%s",rx_buf);
+			memset(rx_buf, 0, sizeof(rx_buf));
+			i = 0;
+			fflush(stdout);
+		}*/
+	}
     loop_rate.sleep();
   }
 }
 
 int main(int argc , char ** argv) {
-    // This thread is launched by using
-    // function pointer as callable
-
+	// initializer serial0
     int sfd = init_serial();
     if (sfd == -1)
         return 1;
-    int rate_b = 1; // 1 Hz
+
+    int rx_rate = 1; // 1 Hz
+    // init ros node
     ros::init(argc, argv, "taotao");
-    // spawn another thread
-    boost::thread thread_b(do_stuff, &rate_b);
+
+    // Request Hall sensor data every 100ms
+    hoverboard.scheduleRead(HoverboardAPI::Codes::sensHall, -1, 100);
+
+    // Request Electrical Information every second
+    hoverboard.scheduleRead(hoverboard.Codes::sensElectrical, -1, 1000);
+
+    // Register Variable and send PWM values periodically
+    hoverboard.updateParamVariable(HoverboardAPI::Codes::setPointPWM, &PWMData, sizeof(PWMData));
+    hoverboard.scheduleTransmission(HoverboardAPI::Codes::setPointPWM, -1, 30);
+
+    // Send PWM to 10% duty cycle for wheel1, 15% duty cycle for wheel2. Wheel2 is running backwards.
+    PWMData.pwm[0] = 100.0;
+    PWMData.pwm[1] = -150.0;
+
+    // Register Variable and send Buzzer values periodically
+    hoverboard.updateParamVariable(HoverboardAPI::Codes::setBuzzer, &buzzer, sizeof(buzzer));
+    hoverboard.scheduleTransmission(HoverboardAPI::Codes::setBuzzer, -1, 200);
+
+    // Set maxium PWM to 400, Minimum to -400 and threshold to 30. Require ACK (Message will be resend when not Acknowledged)
+    hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+
+
+    // spawn thread for receiving data
+    boost::thread rx_thread(rx_node, &rx_rate, sfd);
+
     ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
-    ros::Publisher pub_a = node->advertise<std_msgs::Empty>("topic_a", 10);
-    ros::Rate loop_rate(10); // 10 Hz
+
+    // transmitter
+    ros::Publisher pwm_data = node->advertise<std_msgs::Empty>("pwm", 10);
+    ros::Rate loop_rate(100); // 100 Hz
     while (ros::ok()) {
         std_msgs::Empty msg;
-        pub_a.publish(msg);
+
+        pwm_data.publish(msg);
+        hoverboard.sendPWMData(0, 0, 400, -400, 30, PROTOCOL_SOM_ACK);
+        hoverboard.protocolTick();
         loop_rate.sleep();
         // process any incoming messages in this thread
         ros::spinOnce();
     }
-  // wait the second thread to finish
-  thread_b.join();
+    // wait the second thread to finish
+    rx_thread.join();
 
     //thread rx(rx_node, sfd);
     //thread tx(tx_node, sfd);

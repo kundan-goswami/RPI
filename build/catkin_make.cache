@@ -1,2 +1,2 @@
 taotao
--DCATKIN_DEVEL_PREFIX=/home/ros_master/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros_master/catkin_ws/install -G Unix Makefiles
+-GEclipse CDT4 - Unix Makefiles -DCATKIN_DEVEL_PREFIX=/home/kgoswam/RPI/devel -DCMAKE_INSTALL_PREFIX=/home/kgoswam/RPI/install
