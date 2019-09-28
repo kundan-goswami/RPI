@@ -101,7 +101,7 @@ void rx_node(int* publish_rate) {
     	if (count!=0) {
     		//rx_buf[i++] = c;
     		hoverboard.protocolPush(c);
-    		printf("%c",c);
+    		printf("%x",c);
     		fflush(stdout);
     		/*
 			if (c == 0) {
