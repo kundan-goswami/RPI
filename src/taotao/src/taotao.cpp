@@ -82,7 +82,7 @@ void tx_node(int sfd){
     int count = write(sfd, data, strlen(data)+1);
 }
 
-void rx_node(int* publish_rate,int sfd) {
+void rx_node(int* publish_rate) {
     char rx_buf[20];
     char c;
     int count = 0;
@@ -90,23 +90,25 @@ void rx_node(int* publish_rate,int sfd) {
 
 
     ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
-    ros::Publisher pub_b = node->advertise<std_msgs::Empty>("topic_b", 10);
+    ros::Publisher pub_b = node->advertise<std_msgs::Empty>("pwm", 10);
 
     ros::Rate loop_rate(*publish_rate);
     while (ros::ok()) {
-    std_msgs::Empty msg;
-    pub_b.publish(msg);
-    count = read(sfd,&c,1);
-	if (count!=0) {
-		//rx_buf[i++] = c;
-		hoverboard.protocolPush(c);
-		printf("%c",c);
-		/*
-		if (c == 0) {
-			printf("%s",rx_buf);
-			memset(rx_buf, 0, sizeof(rx_buf));
-			i = 0;
-			fflush(stdout);
+    	std_msgs::Empty msg;
+    	pub_b.publish(msg);
+    	count = read(sfd,&c,1);
+
+    	if (count!=0) {
+    		//rx_buf[i++] = c;
+    		hoverboard.protocolPush(c);
+    		printf("%c",c);
+    		fflush(stdout);
+    		/*
+			if (c == 0) {
+				printf("%s",rx_buf);
+				memset(rx_buf, 0, sizeof(rx_buf));
+				i = 0;
+				fflush(stdout);
 		}*/
 	}
     loop_rate.sleep();
@@ -115,7 +117,7 @@ void rx_node(int* publish_rate,int sfd) {
 
 int main(int argc , char ** argv) {
 	// initializer serial0
-    int sfd = init_serial();
+    sfd = init_serial();
     if (sfd == -1)
         return 1;
 
@@ -146,13 +148,13 @@ int main(int argc , char ** argv) {
 
 
     // spawn thread for receiving data
-    boost::thread rx_thread(rx_node, &rx_rate, sfd);
+    boost::thread rx_thread(rx_node, &rx_rate);
 
     ros::NodeHandlePtr node = boost::make_shared<ros::NodeHandle>();
 
     // transmitter
     ros::Publisher pwm_data = node->advertise<std_msgs::Empty>("pwm", 10);
-    ros::Rate loop_rate(100); // 100 Hz
+    ros::Rate loop_rate(10); // 100 Hz
     while (ros::ok()) {
         std_msgs::Empty msg;
 
