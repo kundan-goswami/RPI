@@ -98,9 +98,9 @@ void rx_node(int* publish_rate) {
     	pub_b.publish(msg);
     	count = read(sfd,&c,1);
     	  // Print Speed on debug Serial.
-    	  printf("Motor Speed: %d km/h (average wheel1 and wheel2",hoverboard.getSpeed_kmh());
+    	  printf("Motor Speed: %d km/h (average wheel1 and wheel2\n",hoverboard.getSpeed_kmh());
     	  // Print battery Voltage on debug Serial.
-    	  printf("Battery Voltage: %d V", hoverboard.getBatteryVoltage());
+    	  printf("Battery Voltage: %d V\n", hoverboard.getBatteryVoltage());
     	  fflush(stdout);
     	if (count!=0) {
     		//rx_buf[i++] = c;
